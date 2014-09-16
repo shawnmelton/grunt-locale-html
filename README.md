@@ -10,7 +10,13 @@ grunt.initConfig({
     localeHtml: {
         dist: {
             options: {
-
+                localeVars: [{
+                    locale: 'en',
+                    copyright: '&copy; 2014 Company Name, All Rights Reserved.'
+                }, {
+                    locale: 'es',
+                    copyright: '&copy; 2014 Company Name, Todos los Derechos Reservados.'
+                }]
             },
             files: [{
                 src: 'src/index.html',
