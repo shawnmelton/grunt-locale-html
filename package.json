@@ -11,13 +11,14 @@
     "url": "https://github.com/shawnmelton/grunt-locale-html.git"
   },
   "author": "Shawn Melton",
-  "license": "MIT",
   "engines": {
     "node": ">= 0.10.0"
   },
   "dependencies": {},
   "devDependencies": {
-    "grunt": "~0.4.2"
+    "grunt": "~0.4.2",
+    "html-minifier": "~0.6.0",
+    "underscore": "~1.7.0"
   },
   "peerDependencies": {
     "grunt": "~0.4.0"
@@ -25,5 +26,8 @@
   "bugs": {
     "url": "https://github.com/shawnmelton/grunt-locale-html/issues"
   },
-  "homepage": "https://github.com/shawnmelton/grunt-locale-html"
+  "homepage": "https://github.com/shawnmelton/grunt-locale-html",
+  "files": [
+    "tasks"
+  ]
 }
