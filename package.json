@@ -1,0 +1,29 @@
+{
+  "name": "grunt-locale-html",
+  "version": "0.0.1",
+  "description": "Translates an HTML file with provided data.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shawnmelton/grunt-locale-html.git"
+  },
+  "author": "Shawn Melton",
+  "license": "MIT",
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "~0.4.2"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.0"
+  },
+  "bugs": {
+    "url": "https://github.com/shawnmelton/grunt-locale-html/issues"
+  },
+  "homepage": "https://github.com/shawnmelton/grunt-locale-html"
+}
