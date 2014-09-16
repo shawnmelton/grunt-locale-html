@@ -15,8 +15,8 @@ module.exports = function(grunt) {
         var options = this.options();
 
         // localeVars will define variables and their appropriate locale associated value.
-        if(!('localeVars' in options)) {
-            return grunt.log.warn('Configuration is not properly set up.  Locale variables have not been added.');
+        if(!('i18n' in options)) {
+            return grunt.log.warn('Configuration is not properly set up.  i18n file not provided.');
         }
 
         this.files.forEach(function(file) {
@@ -30,15 +30,28 @@ module.exports = function(grunt) {
                 return grunt.log.warn('The source file "'+ file.src +'" was not found.');
             }
 
-            var fileContents = grunt.file.read(file.src);
+            var fileContents = grunt.file.read(file.src),
+                i18n,
+                templateObj = {};
+
+            // Parse the internationlization file that we will use to produce the translation.
+            try {
+                i18n = JSON.parse(grunt.file.read(options.i18n));
+            } catch(e) {
+                grunt.log.warn(e);
+                return grunt.log.warn('Internationlization file failed to be properly read.  Please check to make sure your JSON is valid.');
+            }
 
             // Find the appropriate locale and swap out template placeholders.
-            options.localeVars.forEach(function(v) {
-                if(v.locale.toString().toLowerCase() === file.locale.toString().toLowerCase()) {
-                    var tmpl = _.template(fileContents);
-                    fileContents = tmpl(v);
+            i18n.forEach(function(setting) {
+                var locale = file.locale.toString().toLowerCase();
+                if(locale in setting && 'variable' in setting) {
+                    templateObj[setting.variable] = setting[locale];
                 }
             });
+
+            var tmpl = _.template(fileContents);
+            fileContents = tmpl(templateObj);
 
             // Minify HTML contents before writing.
             try {

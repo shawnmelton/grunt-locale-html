@@ -1,9 +1,9 @@
 grunt-locale-html
 =================
 
-Grunt plugin to translate an HTML template into new HTML files.
+Grunt plugin to generage translated HTML files based on an HTML template that uses underscore.js templating.
 
-#### Example config
+#### Example Grunt Configuration
 
 ```javascript
 grunt.initConfig({
@@ -32,4 +32,39 @@ grunt.initConfig({
 });
 
 grunt.registerTask('default', ['localeHtml']);
+```
+
+#### Example i18n.json File
+
+```javascript
+[{
+    "variable": "copyright",
+    "en": "&copy; 2014 Company Name, All Rights Reserved.",
+    "es": "&copy; 2014 Company Name, Todos los Derechos Reservados."
+},{
+    "variable": "title",
+    "en": "Use Full Page",
+    "es": "Utilizár Página Completa"
+}];
+
+```
+
+#### Example HTML File
+
+```html
+<!doctype html>
+<html>
+    <head>
+        <title><%= title %></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    </head>
+    <body>
+        <header></header>
+        <div>
+            <h1><%= title %></h1>
+        </div>
+        <footer><%= copyright %></footer>
+    </body>
+</html>
+
 ```
