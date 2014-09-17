@@ -18,7 +18,8 @@
   "devDependencies": {
     "grunt": "~0.4.2",
     "html-minifier": "~0.6.0",
-    "underscore": "~1.7.0"
+    "underscore": "~1.7.0",
+    "xml2json": "~0.5.1"
   },
   "peerDependencies": {
     "grunt": "~0.4.0"

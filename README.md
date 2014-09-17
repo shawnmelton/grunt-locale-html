@@ -1,7 +1,7 @@
 grunt-locale-html
 =================
 
-Grunt plugin to generage translated HTML files based on an HTML template that uses underscore.js templating.
+Grunt plugin to generage translated HTML files based on an HTML template that uses underscore.js templating.  This plugin requires you to provide a .tmx file.  A reference i18n file will be created so the user can refer to variable names to use in the template.
 
 #### Example Grunt Configuration
 
@@ -10,12 +10,12 @@ grunt.initConfig({
     localeHtml: {
         dist: {
             options: {
+                tmx: '../domain.com/application/lang/example.tmx',
                 i18n: 'src/i18n.json'
             },
             files: [{
                 src: 'src/index.html',
                 dest: 'dist/index.html',
-
                 locale: 'en'
             },{
                 src: 'src/index.html',
@@ -29,7 +29,23 @@ grunt.initConfig({
 grunt.registerTask('default', ['localeHtml']);
 ```
 
+#### Example TMX file
+
+```xml
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<tmx version="1.4">
+    <header />
+    <body>
+        <tu tuid="All Rights Reserved"><tuv xml:lang="es"><seg>Todos los Derechos Reservados</seg></tuv></tu>
+        <tu tuid="Application error"><tuv xml:lang="es"><seg>Error en la aplicación</seg></tuv></tu>
+        <tu tuid="Back"><tuv xml:lang="es"><seg>Retroceder</seg></tuv></tu>
+    </body>
+</tmx>
+```
+
 #### Example i18n.json File
+
+This file will be generated from the .tmx file that is referred to in the Grunt task configuration.  The variable property will be used in the HTML template file.
 
 ```javascript
 [{
@@ -45,6 +61,8 @@ grunt.registerTask('default', ['localeHtml']);
 ```
 
 #### Example HTML File
+
+This file uses Underscore.js templating syntax.
 
 ```html
 <!doctype html>
