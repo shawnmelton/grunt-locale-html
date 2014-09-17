@@ -11,7 +11,7 @@ grunt.initConfig({
         dist: {
             options: {
                 tmx: '../domain.com/application/lang/example.tmx',
-                i18n: 'src/i18n.json'
+                i18n: 'src/i18n.json'   // Reference file only.  Generated from .tmx file above.
             },
             files: [{
                 src: 'src/index.html',
