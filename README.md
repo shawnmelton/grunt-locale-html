@@ -11,15 +11,18 @@ grunt.initConfig({
         dist: {
             options: {
                 tmx: '../domain.com/application/lang/example.tmx',
-                i18n: 'src/i18n.json'   // Reference file only.  Generated from .tmx file above.
+                i18n: 'src/i18n.json',
+                fbCrawlerPHP: 'src/facebook-crawler.php' /* PHP will be injected into generated page. */
             },
             files: [{
                 src: 'src/index.html',
                 dest: 'dist/index.html',
+                fbCrawlerPage: 'dist/facebook-crawler.php', /* Generated PHP page with Facebook Crawler code. */
                 locale: 'en'
             },{
                 src: 'src/index.html',
                 dest: 'dist/es/index.html',
+                fbCrawlerPage: 'dist/es/facebook-crawler.php', /* Generated PHP page with Facebook Crawler code. */
                 locale: 'es'
             }]
         }
@@ -79,5 +82,26 @@ This file uses Underscore.js templating syntax.
         <footer><%= copyright %></footer>
     </body>
 </html>
+
+```
+
+#### Example Facebook Crawler PHP File
+
+This code will be injected into the generated PHP page.
+
+```php
+<?php
+$obj = new stdClass();
+$obj->name = 'Test Object';
+$obj->description = 'Test description ...';
+$obj->image = '';
+$obj->video = '';
+?>
+<meta property="og:title" content="<?php echo $obj->name; ?>">
+<meta property="og:description" content="<?php echo $obj->description; ?>">
+<meta property="og:image" content="<?php echo $obj->image; ?>">
+<?php if(property_exists($obj, 'video') && $obj->video != '') { ?>
+<meta property="og:video" content="<?php echo $obj->video; ?>">
+<?php } ?>
 
 ```
