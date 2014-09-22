@@ -158,6 +158,12 @@ module.exports = function(grunt) {
 
         validateOptions();
 
+
+        grunt.log.warn(this.file.src);
+
+        return;
+
+
         this.files.forEach(function(file) {
             validateFile(file);
             
@@ -205,7 +211,8 @@ module.exports = function(grunt) {
                 grunt.file.write(options.i18n, JSON.stringify(i18nReference, null, 4));
             }
 
-            writeFacebookCrawlerFile(file.dest, options.fbCrawlerPHP, file.fbCrawlerPage);
+            // TODO - Finish this.
+            // writeFacebookCrawlerFile(file.dest, options.fbCrawlerPHP, file.fbCrawlerPage);
         });
     });
 };
