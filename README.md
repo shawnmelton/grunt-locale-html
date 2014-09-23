@@ -64,15 +64,16 @@ grunt.registerTask('default', ['localeHtml']);
 This file will be generated from the .tmx file that is referred to in the Grunt task configuration.  The variable property will be used in the HTML template file.
 
 ```javascript
-[{
-    "variable": "copyright",
-    "en": "&copy; 2014 Company Name, All Rights Reserved.",
-    "es": "&copy; 2014 Company Name, Todos los Derechos Reservados."
-},{
-    "variable": "title",
-    "en": "Use Full Page",
-    "es": "Utilizár Página Completa"
-}];
+{
+    "en": {
+        "copyright": "&copy; 2014 Company Name, All Rights Reserved.",
+        "title": "Use Full Page"
+    },
+    "es": {
+        "copyright": "&copy; 2014 Company Name, Todos los Derechos Reservados.",
+        "title": "Utilizár Página Completa"
+    }
+}
 
 ```
 
