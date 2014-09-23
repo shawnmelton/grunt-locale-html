@@ -14,6 +14,19 @@ grunt.initConfig({
                 i18n: 'src/i18n.json',
                 fbCrawlerPHP: 'src/facebook-crawler.php' /* PHP will be injected into generated page. */
             },
+            files: {
+                'dist': 'src/**/*.html'
+            }
+        }
+    }
+
+    localeHtml: {
+        dist: {
+            options: {
+                tmx: '../domain.com/application/lang/example.tmx',
+                i18n: 'src/i18n.json',
+                fbCrawlerPHP: 'src/facebook-crawler.php' /* PHP will be injected into generated page. */
+            },
             files: [{
                 src: 'src/index.html',
                 dest: 'dist/index.html',
