@@ -19,30 +19,13 @@ grunt.initConfig({
             }
         }
     }
-
-    localeHtml: {
-        dist: {
-            options: {
-                tmx: '../domain.com/application/lang/example.tmx',
-                i18n: 'src/i18n.json',
-                fbCrawlerPHP: 'src/facebook-crawler.php' /* PHP will be injected into generated page. */
-            },
-            files: [{
-                src: 'src/index.html',
-                dest: 'dist/index.html',
-                fbCrawlerPage: 'dist/facebook-crawler.php', /* Generated PHP page with Facebook Crawler code. */
-                locale: 'en'
-            },{
-                src: 'src/index.html',
-                dest: 'dist/es/index.html',
-                fbCrawlerPage: 'dist/es/facebook-crawler.php', /* Generated PHP page with Facebook Crawler code. */
-                locale: 'es'
-            }]
-        }
-    }
 });
 
-grunt.registerTask('default', ['localeHtml']);
+grunt.loadNpmTasks('grunt-locale-html');
+
+grunt.registerTask(
+    'default', ['localeHtml']
+);
 ```
 
 #### Example TMX file
