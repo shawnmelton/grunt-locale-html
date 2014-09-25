@@ -101,9 +101,18 @@ module.exports = function(grunt) {
              */
             generateHTMLFiles = function(files, destFolder, srcString, locales, i18nReference) {
                 files.forEach(function(file) {
-                    var tmpl = _.template(grunt.file.read(file));
+                    var tmpl = null;
+                    try {
+                        tmpl = _.template(grunt.file.read(file));
+                    } catch (e) {}
+
+                    if(tmpl === null) {
+                        grunt.log.warn('"'+ file +'" had an Underscore variable that was not found in "'+ options.i18n +'".');
+                        return;
+                    }
+
                     locales.forEach(function(locale) {
-                        writeHTMLFile(generateDestinationFileName(srcString, locale, destFolder, file), 
+                        writeHTMLFile(generateDestinationFileName(srcString, locale, destFolder, file),
                         minifyHTML(tmpl(i18nReference[locale])));
 
                         // We only need to generate the crawler page for the index.html.
