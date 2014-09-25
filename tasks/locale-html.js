@@ -87,7 +87,7 @@ module.exports = function(grunt) {
              * @param <String> file
              */
             generateDestinationFileName = function(srcString, locale, folder, file) {
-                return folder +'/'+ (locale === 'en' ? '' : locale +'/') + 
+                return folder +'/'+ locale +'/' + 
                     file.replace(file.substring(0, srcString.indexOf('/*') + 1), '');
             },
 
