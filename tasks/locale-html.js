@@ -6,6 +6,8 @@
 
 'use strict';
 
+require('date-util');
+
 var minify = require('html-minifier').minify,
     parser = require('xml2json'),
     _ = require('underscore'),
@@ -29,6 +31,14 @@ module.exports = function(grunt) {
 
                 locales.forEach(function(locale) {
                     i18nReference[locale] = {};
+
+                    i18nReference[locale].localeCode = locale === 'en' ? '' : locale;
+
+                    // TODO - These will not work when multiple translations
+                    i18nReference[locale].localeCueCode = locale === 'en' ? 'es' : '';
+                    i18nReference[locale].localeCue = locale === 'en' ? 'En Español' : 'English';
+                    console.log(new Date().format('yyyy'));
+                    i18nReference[locale].currentYear = new Date().format('yyyy');
                 });
 
                 tmxObj.tmx.body.tu.forEach(function(tu) {

@@ -17,7 +17,8 @@
   "dependencies": {
     "html-minifier": "~0.6.0",
     "underscore": "~1.7.0",
-    "xml2json": "~0.5.1"
+    "xml2json": "~0.5.1",
+    "date-util": "~1.2.0"
   },
   "devDependencies": {
     "grunt": "~0.4.2"
