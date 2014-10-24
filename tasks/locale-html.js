@@ -114,12 +114,6 @@ module.exports = function(grunt) {
                     locales.forEach(function(locale) {
                         writeHTMLFile(generateDestinationFileName(srcString, locale, destFolder, file),
                         minifyHTML(tmpl(i18nReference[locale])));
-
-                        // We only need to generate the crawler page for the index.html.
-                        if(file.indexOf('index.html') !== -1) {
-                            writeFacebookCrawlerFile(generateDestinationFileName(srcString, locale, destFolder, file),
-                                options.fbCrawlerPHP, destFolder +'/'+ (locale === 'en' ? '' : locale +'/') + 'facebook-crawler.php');
-                        }
                     });
                 });
             },
@@ -206,19 +200,6 @@ module.exports = function(grunt) {
                  */
                 if(!('i18n' in options)) {
                     return grunt.log.warn('Configuration is not properly set up.  i18n option not provided.');
-                }
-
-                /**
-                 * i18n will provide the path and file name for the json interpretation of the tmx file.
-                 * This will be a reference file for variable names. 
-                 */
-                if(!('fbCrawlerPHP' in options)) {
-                    return grunt.log.warn('Configuration is not properly set up.  Facebook crawler file not provided.');
-                }
-
-                // .tmx file not found
-                if(!grunt.file.exists(options.fbCrawlerPHP)) {
-                    return grunt.log.warn('Facebook crawler file was not found!  Please double check that "'+ options.fbCrawlerPHP +'" exists.');
                 }
             },
 
