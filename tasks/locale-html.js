@@ -37,7 +37,6 @@ module.exports = function(grunt) {
                     // TODO - These will not work when multiple translations
                     i18nReference[locale].localeCueCode = locale === 'en' ? 'es' : '';
                     i18nReference[locale].localeCue = locale === 'en' ? 'En Español' : 'English';
-                    console.log(new Date().format('yyyy'));
                     i18nReference[locale].currentYear = new Date().format('yyyy');
                 });
 
