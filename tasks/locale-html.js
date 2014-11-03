@@ -85,6 +85,11 @@ module.exports = function(grunt) {
                     words = words.substr(0, 30) +'_';
                 }
 
+                // Variable names can't start with #'s. Add digit_ string to fix this issue.
+                if(/^\d$/.test(words.substr(0,1))) {
+                    words = 'digit_'+ words;
+                }
+
                 return words.substr(0, 1).toLowerCase() + words.substr(1);
             },
 
