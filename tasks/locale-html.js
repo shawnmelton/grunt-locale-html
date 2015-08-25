@@ -17,7 +17,10 @@ var minify = require('html-minifier').minify,
 module.exports = function(grunt) {
 
     grunt.registerMultiTask('localeHtml', 'Translate HTML Template', function() {
-        var options = this.options(),
+        var defaults = {
+            flatten: false
+        };
+        var options = _.extend({}, defaults, this.options()),
 
             /**
              * Build the object that we will output for reference and use to generate the HTML
