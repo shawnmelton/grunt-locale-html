@@ -17,7 +17,10 @@ var minify = require('html-minifier').minify,
 module.exports = function(grunt) {
 
     grunt.registerMultiTask('localeHtml', 'Translate HTML Template', function() {
-        var options = this.options(),
+        var defaults = {
+            flatten: false
+        };
+        var options = _.extend({}, defaults, this.options()),
 
             /**
              * Build the object that we will output for reference and use to generate the HTML
@@ -101,6 +104,10 @@ module.exports = function(grunt) {
              * @param <String> file
              */
             generateDestinationFileName = function(srcString, locale, folder, file) {
+                if(options.flatten){
+                    var parts = file.split('/');
+                    return folder +'/'+ locale +'/' + parts[parts.length -1]; 
+                }
                 return folder +'/'+ locale +'/' + 
                     file.replace(file.substring(0, srcString.indexOf('/*') + 1), '');
             },
