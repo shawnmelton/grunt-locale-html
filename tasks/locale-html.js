@@ -104,6 +104,10 @@ module.exports = function(grunt) {
              * @param <String> file
              */
             generateDestinationFileName = function(srcString, locale, folder, file) {
+                if(options.flatten){
+                    var parts = file.split('/');
+                    return folder +'/'+ locale +'/' + parts[parts.length -1]; 
+                }
                 return folder +'/'+ locale +'/' + 
                     file.replace(file.substring(0, srcString.indexOf('/*') + 1), '');
             },
