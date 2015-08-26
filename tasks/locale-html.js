@@ -35,6 +35,7 @@ module.exports = function(grunt) {
                 locales.forEach(function(locale) {
                     i18nReference[locale] = {};
 
+                    i18nReference[locale].localeId = locale;
                     i18nReference[locale].localeCode = locale === 'en' ? '' : locale;
 
                     // TODO - These will not work when multiple translations
