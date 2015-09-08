@@ -1,7 +1,7 @@
 grunt-locale-html
 =================
 
-Version 0.2.1
+Version 0.3.1
 
 Grunt plugin to generage translated HTML files based on an HTML template that uses underscore.js templating.  This plugin requires you to provide a .tmx file.  A reference i18n file will be created so the user can refer to variable names to use in the template.
 
