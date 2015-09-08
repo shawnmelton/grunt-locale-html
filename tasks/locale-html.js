@@ -18,7 +18,8 @@ module.exports = function(grunt) {
 
     grunt.registerMultiTask('localeHtml', 'Translate HTML Template', function() {
         var defaults = {
-            flatten: false
+            flatten: false,
+            minify: false
         };
         var options = _.extend({}, defaults, this.options()),
 
@@ -134,8 +135,13 @@ module.exports = function(grunt) {
                     }
 
                     locales.forEach(function(locale) {
-                        writeHTMLFile(generateDestinationFileName(srcString, locale, destFolder, file),
-                        minifyHTML(tmpl(i18nReference[locale])));
+                        var htmlContent = tmpl(i18nReference[locale]);
+                        
+                        if(options.minify) {
+                            htmlContent = minifyHTML(htmlContent);
+                        }
+                        
+                        writeHTMLFile(generateDestinationFileName(srcString, locale, destFolder, file), htmlContent);
                     });
                 });
             },
