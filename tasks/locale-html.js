@@ -1,6 +1,6 @@
 /**
  * grunt-locale-html
- * 
+ *
  * Copyright (c) 2014 Shawn Melton
  */
 
@@ -66,7 +66,7 @@ module.exports = function(grunt) {
              */
             convertTMXtoJSObject = function(tmxFile) {
                 try {
-                    return parser.toJson(grunt.file.read(options.tmx, { encoding: 'ISO-8859-1' }), {
+                    return parser.toJson(grunt.file.read(options.tmx), {
                         object: true,
                         reversible: false,
                         coerce: true,
@@ -108,9 +108,9 @@ module.exports = function(grunt) {
             generateDestinationFileName = function(srcString, locale, folder, file) {
                 if(options.flatten){
                     var parts = file.split('/');
-                    return folder +'/'+ locale +'/' + parts[parts.length -1]; 
+                    return folder +'/'+ locale +'/' + parts[parts.length -1];
                 }
-                return folder +'/'+ locale +'/' + 
+                return folder +'/'+ locale +'/' +
                     file.replace(file.substring(0, srcString.indexOf('/*') + 1), '');
             },
 
@@ -136,11 +136,11 @@ module.exports = function(grunt) {
 
                     locales.forEach(function(locale) {
                         var htmlContent = tmpl(i18nReference[locale]);
-                        
+
                         if(options.minify) {
                             htmlContent = minifyHTML(htmlContent);
                         }
-                        
+
                         writeHTMLFile(generateDestinationFileName(srcString, locale, destFolder, file), htmlContent);
                     });
                 });
@@ -208,7 +208,7 @@ module.exports = function(grunt) {
             },
 
             /**
-             * Make sure that Gruntfile has provided all of the required options and that 
+             * Make sure that Gruntfile has provided all of the required options and that
              * the options have valid entries.
              */
             validateOptions = function() {
@@ -224,7 +224,7 @@ module.exports = function(grunt) {
 
                 /**
                  * i18n will provide the path and file name for the json interpretation of the tmx file.
-                 * This will be a reference file for variable names. 
+                 * This will be a reference file for variable names.
                  */
                 if(!('i18n' in options)) {
                     return grunt.log.warn('Configuration is not properly set up.  i18n option not provided.');
@@ -241,7 +241,7 @@ module.exports = function(grunt) {
                     phpContents = grunt.file.read(phpFile),
                     headIdx = htmlContents.indexOf('</head>');
 
-                grunt.file.write(crawlerFile, htmlContents.substr(0, headIdx) + 
+                grunt.file.write(crawlerFile, htmlContents.substr(0, headIdx) +
                     phpContents + htmlContents.substr(headIdx));
                 grunt.log.writeln('Successfully generated translated PHP file "'+ crawlerFile +'".');
             },

@@ -1,7 +1,9 @@
 grunt-locale-html
 =================
 
-Version 0.3.0
+Version 0.4.0
+
+###BREAKING in 0.4.0 - No longer reads tmx file as ISO-8859-1.
 
 Grunt plugin to generage translated HTML files based on an HTML template that uses underscore.js templating.  This plugin requires you to provide a .tmx file.  A reference i18n file will be created so the user can refer to variable names to use in the template.
 
