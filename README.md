@@ -1,15 +1,33 @@
 grunt-locale-html
 =================
 
-Version 0.4.0
+Version 1.0.0
 
-###BREAKING in 0.4.0 - No longer reads tmx file as ISO-8859-1.
+###BREAKING in 1.0.0 - Plugin now reads a JSON dictionary and no longer supports .tmx files.
 
-Grunt plugin to generage translated HTML files based on an HTML template that uses underscore.js templating.  This plugin requires you to provide a .tmx file.  A reference i18n file will be created so the user can refer to variable names to use in the template.
+Grunt plugin to generage translated HTML files based on an HTML template that uses underscore.js templating.  This plugin requires you to provide a .json file.  A reference i18n file will be created so the user can refer to variable names to use in the template.
 
 ### Options
 `flatten` - {Boolean} If set to true, will flatten directory structure of output files.
 `minify` - {Boolean} If set to true, html will be minified after translation.
+`variablesFile` - {String} Path to output generated variables file.
+`locales` - {Object[]} - Collection of supported locales.
+
+#### Sample locales option
+```javascript
+    [
+        {
+            id: 'en',
+            localeCue: 'English',
+            localeCueCode: 'en',
+            isPrimary: true // Our dictionary is written in this language, others are translations of it.
+        }, {
+            id: 'es',
+            localeCue: 'En Español',
+            localeCueCode: 'es'
+        }
+    ]
+```
 
 #### Example Grunt Configuration
 
@@ -35,33 +53,32 @@ grunt.registerTask(
 );
 ```
 
-#### Example TMX file
+#### Example dictionary.json File (input)
 
-```xml
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<tmx version="1.4">
-    <header />
-    <body>
-        <tu tuid="All Rights Reserved"><tuv xml:lang="es"><seg>Todos los Derechos Reservados</seg></tuv></tu>
-        <tu tuid="Application error"><tuv xml:lang="es"><seg>Error en la aplicación</seg></tuv></tu>
-        <tu tuid="Back"><tuv xml:lang="es"><seg>Retroceder</seg></tuv></tu>
-    </body>
-</tmx>
+```javascript
+    {
+        "Apartments": {
+            "es": "Apartamentos"
+        },
+        "Apartments for Rent": {
+            "es": "Apartamentos en Renta"
+        }
+    }
 ```
 
-#### Example i18n.json File
+#### Example variables.json File (output)
 
-This file will be generated from the .tmx file that is referred to in the Grunt task configuration.  The variable property will be used in the HTML template file.
+This file will be generated from the .json file that is referred to in the Grunt task configuration.  The variable property will be used in the HTML template file.
 
 ```javascript
 {
     "en": {
-        "copyright": "&copy; 2014 Company Name, All Rights Reserved.",
-        "title": "Use Full Page"
+        "apartments": "Apartments",
+        "apartmentsForRent": "Apartments For Rent",
     },
     "es": {
-        "copyright": "&copy; 2014 Company Name, Todos los Derechos Reservados.",
-        "title": "Utilizár Página Completa"
+        "apartments": "Apartamentos",
+        "apartmentsForRent": "Apartamentos en Renta",
     }
 }
 
@@ -75,15 +92,15 @@ This file uses Underscore.js templating syntax.
 <!doctype html>
 <html>
     <head>
-        <title><%= title %></title>
+        <title><%= apartments %></title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     </head>
     <body>
         <header></header>
         <div>
-            <h1><%= title %></h1>
+            <h1><%= apartmentsForRent %></h1>
         </div>
-        <footer><%= copyright %></footer>
+        <footer></footer>
     </body>
 </html>
 

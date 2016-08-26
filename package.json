@@ -1,6 +1,6 @@
 {
   "name": "grunt-locale-html",
-  "version": "0.4.0",
+  "version": "1.0.0",
   "description": "Translates an HTML file with provided data.",
   "main": "index.js",
   "scripts": {
@@ -12,13 +12,12 @@
   },
   "author": "Shawn Melton",
   "engines": {
-    "node": ">= 0.10.0"
+    "node": ">= 4.5.0"
   },
   "dependencies": {
-    "html-minifier": "~0.6.0",
-    "underscore": "~1.7.0",
-    "xml2json": "~0.5.1",
-    "date-util": "~1.2.0"
+    "html-minifier": "~3.0.2",
+    "underscore": "~1.8.3",
+    "date-util": "~1.2.1"
   },
   "devDependencies": {
     "grunt": "~0.4.2"
