@@ -1,6 +1,6 @@
 {
   "name": "grunt-locale-html",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Translates an HTML file with provided data.",
   "main": "index.js",
   "scripts": {
