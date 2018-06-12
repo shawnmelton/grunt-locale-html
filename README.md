@@ -1,7 +1,7 @@
 grunt-locale-html
 =================
 
-Version 1.1.0
+Version 1.2.0
 
 ###BREAKING in 1.0.0 - Plugin now reads a JSON dictionary and no longer supports .tmx files.
 
