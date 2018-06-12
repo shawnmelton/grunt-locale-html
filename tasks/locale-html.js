@@ -53,6 +53,8 @@ module.exports = function (grunt) {
                     // There's no way to make this work for multiple translations without breaking or modifying the front end.
                     i18nReference[locale.id].localeCueCode = locale.id === 'en' ? 'es' : 'en';
                     i18nReference[locale.id].localeCue = locale.id === 'en' ? 'En Español' : 'English';
+                    i18nReference[locale.id].baseHref = locale.id === 'en' ? '' : '/es';
+                    i18nReference[locale.id].altBaseHref = locale.id === 'en' ? '/es' : '';
                     i18nReference[locale.id].currentYear = new Date().format('yyyy');
                 });
 
